@@ -4,7 +4,7 @@ import { makeSmythosRequest } from '../utils/smythosApi.js';
 const router = express.Router();
 
 // Get neighborhood data
-router.get('/data', async (req, res, next) => {
+router.post('/data', async (req, res, next) => {
   try {
     const { neighborhood, city } = req.query;
 
@@ -21,7 +21,7 @@ router.get('/data', async (req, res, next) => {
       city: city || ''
     };
 
-    const result = await makeSmythosRequest('/api/neighborhood_data', 'GET', null, params);
+    const result = await makeSmythosRequest('/api/neighborhood_data', 'POST', null, params);
 
     // 🔑 Extract neighborhood info with flexible structure handling
     let neighborhoodInfo = {};
