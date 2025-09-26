@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 // --- Proxy API requests to your backend (ngrok/EC2) ---
-const API_BASE = process.env.API_BASE || "https://<your-ngrok-url>";
+const API_BASE = process.env.API_BASE || "https://unsteaming-nonfrequently-debbi.ngrok-free.dev";
 
 app.use("/api", (req, res) => {
   const targetUrl = API_BASE + req.originalUrl;
