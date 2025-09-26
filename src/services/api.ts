@@ -77,8 +77,6 @@ export const agentApi = {
 };
 
 // Neighborhood API calls
-
-
 export const neighborhoodApi = {
   getData: async (neighborhood: string, city: string) => {
     const params = new URLSearchParams({ neighborhood, city });
