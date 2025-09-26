@@ -77,8 +77,22 @@ export const agentApi = {
 };
 
 // Neighborhood API calls
-
+// Neighborhood API calls
 export const neighborhoodApi = {
+  getData: async (data: { neighborhood: string; city: string }) => {
+    const response = await apiRequest('/neighborhoods/data', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+    console.log('🔍 Frontend API Service (Neighborhoods) - Full response from backend:', response);
+    console.log('🔍 Frontend API Service (Neighborhoods) - response.data:', response.data);
+    console.log('🔍 Frontend API Service (Neighborhoods) - Type of response.data:', typeof response.data);
+    console.log('🔍 Frontend API Service (Neighborhoods) - Keys in response.data:', Object.keys(response.data || {}));
+    return response.data; // return neighborhood info
+  },
+};
+
+/*export const neighborhoodApi = {
   getData: async (neighborhood: string, city: string) => {
     const params = new URLSearchParams({ neighborhood, city });
     const response = await apiRequest(`/neighborhoods/data?${params}`);
@@ -88,7 +102,7 @@ export const neighborhoodApi = {
     console.log('🔍 Frontend API Service (Neighborhoods) - Keys in response.data:', Object.keys(response.data || {}));
     return response.data; // return neighborhood info
   },
-};
+};*/
 
 // Ad API calls
 export const adApi = {
