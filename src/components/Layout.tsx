@@ -6,10 +6,9 @@ interface LayoutProps {
   children: React.ReactNode;
   activeTab: string;
   onTabChange: (tab: string) => void;
-  apiStatus?: 'checking' | 'available' | 'unavailable';
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, activeTab, onTabChange, apiStatus = 'checking' }) => {
+const Layout: React.FC<LayoutProps> = ({ children, activeTab, onTabChange }) => {
   const tabs = [
     { id: 'listings', label: 'Property Listings', icon: Home },
     { id: 'neighborhoods', label: 'Neighborhoods', icon: MapPin },
@@ -31,28 +30,6 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, onTabChange, apiSt
                 <h1 className="text-xl font-bold text-gray-900">PropertyFinder</h1>
                 <p className="text-sm text-gray-500">AI-Powered Real Estate Discovery</p>
               </div>
-            </div>
-            
-            {/* API Status Indicator */}
-            <div className="flex items-center space-x-2">
-              {apiStatus === 'checking' && (
-                <div className="flex items-center space-x-2 text-yellow-600">
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
-                  <span className="text-xs">Checking API...</span>
-                </div>
-              )}
-              {apiStatus === 'available' && (
-                <div className="flex items-center space-x-2 text-green-600">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-xs">API Connected</span>
-                </div>
-              )}
-              {apiStatus === 'unavailable' && (
-                <div className="flex items-center space-x-2 text-red-600">
-                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <span className="text-xs">Static Demo</span>
-                </div>
-              )}
             </div>
           </div>
         </div>

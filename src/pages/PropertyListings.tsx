@@ -46,14 +46,7 @@ const PropertyListings: React.FC = () => {
       // Set properties - response should already be the data array from API service
       setProperties(response || []);
     } catch (err: any) {
-      const errorMessage = err.message || 'Failed to generate property listings';
-      setError(errorMessage);
-      
-      // For demo purposes in static deployment, show sample data
-      if (errorMessage.includes('Network error') || errorMessage.includes('Failed to connect')) {
-        console.log('API not available, showing demo data');
-        // You could add demo data here if needed
-      }
+      setError(err.message || 'Failed to generate property listings');
     } finally {
       setLoading(false);
     }

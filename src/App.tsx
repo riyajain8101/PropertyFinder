@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Layout from './components/Layout';
 import PropertyListings from './pages/PropertyListings';
 import Neighborhoods from './pages/Neighborhoods';
@@ -7,42 +7,24 @@ import AdGeneration from './pages/AdGeneration';
 
 function App() {
   const [activeTab, setActiveTab] = useState('listings');
-  const [apiStatus, setApiStatus] = useState<'checking' | 'available' | 'unavailable'>('checking');
-
-  useEffect(() => {
-    // Check if API is available
-    const checkApiStatus = async () => {
-      try {
-        const response = await fetch('/api/health', { 
-          method: 'GET',
-          timeout: 5000 
-        } as RequestInit);
-        setApiStatus(response.ok ? 'available' : 'unavailable');
-      } catch (error) {
-        setApiStatus('unavailable');
-      }
-    };
-
-    checkApiStatus();
-  }, []);
 
   const renderPage = () => {
     switch (activeTab) {
       case 'listings':
-        return <PropertyListings apiStatus={apiStatus} />;
+        return <PropertyListings />;
       case 'neighborhoods':
-        return <Neighborhoods apiStatus={apiStatus} />;
+        return <Neighborhoods />;
       case 'agents':
-        return <AgentProfiles apiStatus={apiStatus} />;
+        return <AgentProfiles />;
       case 'ads':
-        return <AdGeneration apiStatus={apiStatus} />;
+        return <AdGeneration />;
       default:
-        return <PropertyListings apiStatus={apiStatus} />;
+        return <PropertyListings />;
     }
   };
 
   return (
-    <Layout activeTab={activeTab} onTabChange={setActiveTab} apiStatus={apiStatus}>
+    <Layout activeTab={activeTab} onTabChange={setActiveTab}>
       {renderPage()}
     </Layout>
   );

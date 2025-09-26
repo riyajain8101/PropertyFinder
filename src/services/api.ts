@@ -1,22 +1,4 @@
-// Determine API base URL based on environment
-const getApiBaseUrl = () => {
-  // In development, use the proxy
-  if (import.meta.env.DEV) {
-    return '/api';
-  }
-  
-  // In production, check for environment variable first
-  if (import.meta.env.VITE_API_URL) {
-    return import.meta.env.VITE_API_URL;
-  }
-  
-  // Fallback: try to detect if we're running as a full-stack app
-  // by checking if the current origin serves API endpoints
-  return `${window.location.origin}/api`;
-};
-
-const API_BASE_URL = getApiBaseUrl();
-
+const API_BASE_URL = 'http://localhost:3001/api';
 
 class ApiError extends Error {
   constructor(public status: number, message: string) {
